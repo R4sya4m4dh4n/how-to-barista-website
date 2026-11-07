@@ -105,4 +105,38 @@ footer{background:#0a100d;border-top:1px solid var(--line);padding:25px 15px;tex
     <div class="book-row"><div class="row"><strong>Jilid 4 — Coffee Business</strong><span class="status">BELUM DIMULAI</span></div><div class="progress"><i style="width:0%"></i></div></div>
     <div class="note">Pada sistem sebenarnya, progres akan tersimpan di akun siswa dan dihitung dari bab atau materi yang ditandai selesai. Buku yang tidak dibeli tetap terkunci. Akses buku yang sudah dibeli berlaku selamanya.</div>
   </div>
-  <div class="panel" style="margin-top:18px"><h3>Kelas & Sertifikat</h3><p class="muted">Sertifikat digital dapat diterbitkan setelah siswa menyelesaikan seluruh materi wajib dan lulus ujian akhir.</p><button class="btn" o
+  <div class="panel" style="margin-top:18px"><h3>Kelas & Sertifikat</h3><p class="muted">Sertifikat digital dapat diterbitkan setelah siswa menyelesaikan seluruh materi wajib dan lulus ujian akhir.</p><button class="btn" const heroElement = document.getElementById("heroSlider");
+if (heroElement) {
+  heroElement.addEventListener("touchstart", event => {
+    heroTouchStart = event.changedTouches[0].screenX;
+  }, { passive: true });
+
+  heroElement.addEventListener("touchend", event => {
+    const distance = event.changedTouches[0].screenX - heroTouchStart;
+    if (Math.abs(distance) > 55) moveHero(distance < 0 ? 1 : -1);
+  }, { passive: true });
+}
+
+function sendQuestion(event) {
+  event.preventDefault();
+  const input = document.getElementById("question");
+  const question = input.value.trim();
+  if (!question) return;
+
+  const bubble = document.createElement("div");
+  bubble.className = "bubble user";
+  const label = document.createElement("b");
+  label.textContent = "SISWA";
+  bubble.appendChild(label);
+  bubble.appendChild(document.createTextNode(question));
+  document.getElementById("chatbox").appendChild(bubble);
+  input.value = "";
+}
+
+heroTimer = window.setInterval(() => {
+  const home = document.getElementById("home");
+  if (home && home.classList.contains("active")) moveHero(1);
+}, 7000);
+</script>
+</body>
+</html>
